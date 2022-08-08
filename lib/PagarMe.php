@@ -128,6 +128,11 @@ class PagarMe
     private $balanceHandler;
 
     /**
+     * @param string
+     */
+    protected $baseUri = 'https://api.pagar.me/1/';
+
+    /**
      * @param string $apiKey
      * @param int|null $timeout
      * @param array $requestOptions
@@ -143,8 +148,8 @@ class PagarMe
         $this->client = new Client(
             new GuzzleClient(
                 [
-                    'base_url' => 'https://api.pagar.me/1/',
-                    'base_uri' => 'https://api.pagar.me/1/',
+                    'base_url' => $this->getBaseUri(),
+                    'base_uri' => $this->getBaseUri(),
                     'defaults' => [
                         'headers' => $requestHeaders->getSdkHeaders($headers)
                     ]
@@ -392,5 +397,13 @@ class PagarMe
         }
 
         return $this->balanceHandler;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUri(): string
+    {
+        return $this->baseUri;
     }
 }
