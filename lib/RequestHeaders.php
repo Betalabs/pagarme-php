@@ -28,11 +28,13 @@ class RequestHeaders
     {
         if (isset($headers['X-PagarMe-User-Agent'])) {
             $headers['X-PagarMe-User-Agent'] .= ' ' . $this->getDefaultHeaders();
+            $headers['X-PagarMe-Version']     = '2013-03-01';
 
             return $headers;
         }
 
         $headers['X-PagarMe-User-Agent'] = $this->getDefaultHeaders();
+        $headers['X-PagarMe-Version']    = '2013-03-01';
 
         return $headers;
     }
