@@ -51,13 +51,14 @@ class TransactionHandler extends AbstractHandler
     ) {
         $transactionData = array_merge(
             [
-                'amount'       => $amount,
-                'card'         => $card,
-                'customer'     => $customer,
-                'installments' => $installments,
-                'capture'      => $capture,
-                'postbackUrl'  => $postBackUrl,
-                'metadata'     => $metadata
+                'amount'               => $amount,
+                'service_referer_name' => '62faf839f6b3230019fd1eb0',
+                'card'                 => $card,
+                'customer'             => $customer,
+                'installments'         => $installments,
+                'capture'              => $capture,
+                'postbackUrl'          => $postBackUrl,
+                'metadata'             => $metadata
             ],
             $extraAttributes
         );
@@ -86,10 +87,11 @@ class TransactionHandler extends AbstractHandler
     ) {
         $transactionData = array_merge(
             [
-                'amount'      => $amount,
-                'customer'    => $customer,
-                'postbackUrl' => $postBackUrl,
-                'metadata'    => $metadata
+                'amount'               => $amount,
+                'service_referer_name' => '62faf839f6b3230019fd1eb0',
+                'customer'             => $customer,
+                'postbackUrl'          => $postBackUrl,
+                'metadata'             => $metadata
             ],
             $extraAttributes
         );
@@ -125,6 +127,7 @@ class TransactionHandler extends AbstractHandler
     ) {
         $transactionData = [
             'amount'                => $amount,
+            'service_referer_name'  => '62faf839f6b3230019fd1eb0',
             'customer'              => $customer,
             'postbackUrl'           => $postBackUrl,
             'pixExpirationDate'     => $pixExpirationDate,
