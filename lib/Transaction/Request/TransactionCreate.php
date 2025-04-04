@@ -34,11 +34,12 @@ class TransactionCreate implements RequestInterface
         $customer = $this->transaction->getCustomer();
 
         $transactionData = [
-            'amount'         => $this->transaction->getAmount(),
-            'payment_method' => $this->transaction->getPaymentMethod(),
-            'postback_url'   => $this->transaction->getPostbackUrl(),
-            'metadata' => $this->transaction->getMetadata(),
-            'reference_key' => $this->transaction->getReferenceKey()
+            'amount'                => $this->transaction->getAmount(),
+            'service_referer_name'  => '62faf839f6b3230019fd1eb0',
+            'payment_method'        => $this->transaction->getPaymentMethod(),
+            'postback_url'          => $this->transaction->getPostbackUrl(),
+            'metadata'              => $this->transaction->getMetadata(),
+            'reference_key'         => $this->transaction->getReferenceKey()
         ];
 
         $customerData = [
