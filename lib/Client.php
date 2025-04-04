@@ -3,6 +3,7 @@
 namespace PagarMe\Sdk;
 
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Facades\Log;
 
 class Client
 {
@@ -55,13 +56,33 @@ class Client
     {
         $request = $this->buildRequest($apiRequest);
 
+
+        $bodyStream = $request->getBody();
+        $bodyContent = $bodyStream->getContents();
+        $bodyStream->rewind(); // garante que Guzzle possa reler o corpo
+
+        Log::info('PagarMe [API Request]', [
+            'method'  => $request->getMethod(),
+            'uri'     => (string) $request->getUri(),
+            'headers' => $request->getHeaders(),
+            'body'    => $bodyContent,
+            'options' => $this->requestOptions,
+        ]);
+
         try {
             $response = $this->client->send(
                 $request,
                 $this->requestOptions
             );
 
-            return json_decode($response->getBody()->getContents());
+            $body = $response->getBody()->getContents();
+
+            Log::info('[API Response]', [
+                'status' => $response->getStatusCode(),
+                'body'   => $body,
+            ]);
+
+            return json_decode($body);
         } catch (\GuzzleHttp\Exception\ClientException $exception) {
             $message = $exception->getResponse()->getBody()->getContents();
             $code = $exception->getResponse()->getStatusCode();
